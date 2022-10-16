@@ -23,6 +23,10 @@ func get_input():
 
 func _physics_process(_delta):
 	get_input()
+	if velocity == Vector2(0,0):
+		$Raven_Sprite.animation = "Idle"
+	else:
+		$Raven_Sprite.animation = "Walking"
 	if HOLDING_ITEM:
 		velocity = velocity.normalized() * HOLD_SPEED
 	else:

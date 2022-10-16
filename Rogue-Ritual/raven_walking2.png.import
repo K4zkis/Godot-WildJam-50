@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/raven.png-eec9cabb086493767441b5589634da41.stex"
+path="res://.import/raven_walking2.png-27587dbdcb13612bcd3528dcdd78578f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raven.png"
-dest_files=[ "res://.import/raven.png-eec9cabb086493767441b5589634da41.stex" ]
+source_file="res://raven_walking2.png"
+dest_files=[ "res://.import/raven_walking2.png-27587dbdcb13612bcd3528dcdd78578f.stex" ]
 
 [params]
 
