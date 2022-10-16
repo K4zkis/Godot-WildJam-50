@@ -81,6 +81,10 @@ ui_down={
  ]
 }
 
+[mono]
+
+project/assembly_name="Rogue-Ritual"
+
 [physics]
 
 common/enable_pause_aware_picking=true
