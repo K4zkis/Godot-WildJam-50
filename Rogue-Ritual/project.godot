@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Rogue-Ritual"
-run/main_scene="res://Player.tscn"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -21,6 +21,10 @@ window/size/height=210
 window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[global]
+
+background=false
 
 [gui]
 
@@ -81,10 +85,15 @@ ui_down={
  ]
 }
 
+[mono]
+
+project/assembly_name="Rogue-Ritual"
+
 [physics]
 
 common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
