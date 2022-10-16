@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
-export (int) var MAX_SPEED = 250
+export (int) var MAX_SPEED = 80
+export (int) var KNOCKBACK_SPEED =500
 export (int) var ACCELERATION = 20
 export (int) var FRICTION = 20
-export (int) var HOLD_SPEED = 150
+export (int) var HOLD_SPEED = 40
 export (bool) var HOLDING_ITEM = false
 
 var velocity = Vector2()
@@ -41,7 +42,8 @@ func _physics_process(_delta):
 
 
 func apply_knockback():
-	pass
+	var knockback_direction = (self.global_transform.origin - get_parent().get_node("Boss").global_transform.origin).normalized()
+	velocity = move_and_slide(knockback_direction*KNOCKBACK_SPEED*-1)
 func apply_frozen_ground():
 	#friction
 	pass

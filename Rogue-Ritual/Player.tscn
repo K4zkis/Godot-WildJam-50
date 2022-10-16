@@ -23,8 +23,6 @@ animations = [ {
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 2 )
-MAX_SPEED = 80
-HOLD_SPEED = 40
 HOLDING_ITEM = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,6 +30,5 @@ shape = SubResource( 1 )
 
 [node name="Raven_Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "Walking"
-frame = 1
+animation = "Idle"
 playing = true
