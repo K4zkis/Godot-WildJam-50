@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://raven.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 9 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 2 )
+MAX_SPEED = 80
+HOLD_SPEED = 40
+HOLDING_ITEM = true
+
+[node name="Raven_Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -1 )
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
