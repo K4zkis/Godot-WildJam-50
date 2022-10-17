@@ -266,3 +266,6 @@ position = Vector2( 132, 65 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0, 0, 0, 1 )
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="Player" method="Timer_timeout"]

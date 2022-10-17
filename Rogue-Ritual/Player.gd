@@ -1,15 +1,23 @@
 extends KinematicBody2D
 
 export (int) var MAX_SPEED = 80
-export (int) var KNOCKBACK_SPEED =500
+export (int) var KNOCKBACK_SPEED =400
 export (int) var ACCELERATION = 20
-export (int) var FRICTION = 20
+export (int) var FRICTION = 50
 export (int) var HOLD_SPEED = 40
 export (bool) var HOLDING_ITEM = false
 export (bool) var STUN_ACTIVE = false
 
 var velocity = Vector2()
+var counter = 0
 
+onready var timer = get_parent().get_node("Timer")
+
+func _ready():
+	timer.set_one_shot(1)
+	
+	
+	
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
@@ -48,23 +56,40 @@ func _physics_process(_delta):
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if collision.collider.name.begins_with("Boss"):
-			print ("collided with", collision.collider.name)
+			print ("collided with ", collision.collider.name)
 			STUN_ACTIVE = true
 	
 
 
 func apply_knockback(direction):
-	#this doesn't wirk yet
-	#velocity = move_toward(KNOCKBACK_SPEED,0,FRICTION)*direction*-1
-		#if velocity.x*velocity.y == 0:
-			#STUN_ACTIVE=false
-	pass
+	#this doesn't work yet
+	if counter == 0:
+		timer.start()
+		print ("Timer is started")
+	if counter*FRICTION < KNOCKBACK_SPEED:
+		velocity = (KNOCKBACK_SPEED-FRICTION*counter)*direction
+	else:
+		pass
+	
+	print ("counter is ", counter)
+	counter +=1
+	
+	
 func apply_frozen_ground():
 	#friction
 	pass
+	
+	
 func apply_damage():
 	# apply damage in case of
 	# interaction with boss
 	# contact with the wall at certain speed
 	# contact with spider attack
 	pass
+
+
+func Timer_timeout():
+	STUN_ACTIVE=false
+	counter = 0
+	print (" Stun is deactivated and counter reset")
+	
