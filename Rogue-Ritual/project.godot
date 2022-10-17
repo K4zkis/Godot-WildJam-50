@@ -25,6 +25,8 @@ window/stretch/aspect="keep"
 [global]
 
 background=false
+bac=false
+color=false
 
 [gui]
 

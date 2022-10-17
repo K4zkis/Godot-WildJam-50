@@ -1,15 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://raven_idle.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://raven_walking1.png" type="Texture" id=3]
 [ext_resource path="res://raven_walking2.png" type="Texture" id=4]
 [ext_resource path="res://raven_shadow1.png" type="Texture" id=5]
-[ext_resource path="res://library_tilemap.png" type="Texture" id=6]
 [ext_resource path="res://Raven_Shadow.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 4 )
+extents = Vector2( 8, 9 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -41,8 +40,3 @@ playing = true
 z_index = -1
 texture = ExtResource( 5 )
 script = ExtResource( 7 )
-
-[node name="Light2D" type="Light2D" parent="."]
-texture = ExtResource( 6 )
-texture_scale = 0.22
-energy = 1.57
