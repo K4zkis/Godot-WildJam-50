@@ -8,7 +8,7 @@
 [ext_resource path="res://Raven_Shadow.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 9 )
+extents = Vector2( 8, 4 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {

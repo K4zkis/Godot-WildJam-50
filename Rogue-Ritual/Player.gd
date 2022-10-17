@@ -1,15 +1,23 @@
 extends KinematicBody2D
 
 export (int) var MAX_SPEED = 80
-export (int) var KNOCKBACK_SPEED =500
+export (int) var KNOCKBACK_SPEED =400
 export (int) var ACCELERATION = 20
-export (int) var FRICTION = 20
+export (int) var FRICTION = 50
 export (int) var HOLD_SPEED = 40
 export (bool) var HOLDING_ITEM = false
 export (bool) var STUN_ACTIVE = false
-
+export (float) var STUN_TIME = 0.7
 var velocity = Vector2()
+var counter = 0
 
+onready var timer = get_parent().get_node("Timer")
+
+func _ready():
+	timer.set_one_shot(STUN_TIME)
+	
+	
+	
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
@@ -23,7 +31,7 @@ func get_input():
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	
 	if STUN_ACTIVE == false:
 		get_input()
@@ -34,7 +42,7 @@ func _physics_process(_delta):
 	else:
 		var knockback_direction = Vector2()
 		knockback_direction = (self.global_transform.origin - get_parent().get_node("Boss").global_transform.origin).normalized()
-		apply_knockback(knockback_direction)
+		apply_knockback(knockback_direction,delta)
 		
 	
 	if velocity == Vector2(0,0):
@@ -48,23 +56,53 @@ func _physics_process(_delta):
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if collision.collider.name.begins_with("Boss"):
-			print ("collided with", collision.collider.name)
+			print ("collided with ", collision.collider.name)
 			STUN_ACTIVE = true
 	
 
 
-func apply_knockback(direction):
-	#this doesn't wirk yet
-	#velocity = move_toward(KNOCKBACK_SPEED,0,FRICTION)*direction*-1
-		#if velocity.x*velocity.y == 0:
-			#STUN_ACTIVE=false
-	pass
+func apply_knockback(direction,delta):
+	#this doesn't work yet
+	if counter == 0:
+		timer.start()
+		print ("Timer is started")
+	else:
+		#change the speed with each frame "delta" through decrease_speed_bezier() function
+		velocity = decrease_speed_bezier(delta,direction,counter)
+	counter +=1
+	
+	
 func apply_frozen_ground():
 	#friction
 	pass
+	
+	
 func apply_damage():
 	# apply damage in case of
 	# interaction with boss
 	# contact with the wall at certain speed
 	# contact with spider attack
 	pass
+
+func decrease_speed_bezier(delta,direction,counter):
+	#this is in progress
+	var new_speed=KNOCKBACK_SPEED/counter
+	var remaining = timer.get_time_left()
+	#the max time we have is STUN_TIME
+	if remaining < STUN_TIME and remaining > 0.5*STUN_TIME:
+		#first part decreses linear
+		pass
+	if remaining < 0.5*STUN_TIME and remaining > 0.2*STUN_TIME:
+		pass
+	else:
+		#last part is linearly interpolated
+		pass
+	#new_speed = move_toward(new_speed,0,0.8)
+	return direction*new_speed
+
+
+func Timer_timeout():
+	STUN_ACTIVE=false
+	counter = 0
+	print (" Stun is deactivated and counter reset")
+	
