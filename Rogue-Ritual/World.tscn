@@ -259,3 +259,7 @@ z_index = -2
 tile_set = SubResource( 1 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 196609, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 0, 65536, 0, 1, 65537, 0, 65538, 65538, 0, 65538, 65539, 0, 65539, 65540, 0, 196611, 131072, 0, 131072, 131073, 0, 131073, 131074, 0, 131073, 131075, 0, 196611 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="Player" method="Timer_timeout"]
