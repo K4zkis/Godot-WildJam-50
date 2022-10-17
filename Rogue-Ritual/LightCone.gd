@@ -12,6 +12,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	self.position =  get_parent().get_node("Player").position + (get_parent().get_node("Player_Camera_mouse").position - get_parent().get_node("Player").position).normalized()*  50
 	self.rotation = ( get_parent().get_node("Player_Camera_mouse").position - get_parent().get_node("Player").position).angle()

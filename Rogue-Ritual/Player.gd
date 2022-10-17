@@ -10,6 +10,7 @@ export (bool) var STUN_ACTIVE = false
 export (float) var STUN_TIME = 0.7
 var velocity = Vector2()
 var counter = 0
+var HEALTH = 5
 
 onready var timer = get_parent().get_node("Timer")
 
@@ -31,7 +32,7 @@ func get_input():
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if STUN_ACTIVE == false:
 		get_input()
@@ -42,7 +43,7 @@ func _physics_process(delta):
 	else:
 		var knockback_direction = Vector2()
 		knockback_direction = (self.global_transform.origin - get_parent().get_node("Boss").global_transform.origin).normalized()
-		apply_knockback(knockback_direction,delta)
+		apply_knockback(knockback_direction,_delta)
 		
 	
 	if velocity == Vector2(0,0):
@@ -61,14 +62,14 @@ func _physics_process(delta):
 	
 
 
-func apply_knockback(direction,delta):
+func apply_knockback(direction,_delta):
 	#this doesn't work yet
 	if counter == 0:
 		timer.start()
 		print ("Timer is started")
 	else:
 		#change the speed with each frame "delta" through decrease_speed_bezier() function
-		velocity = decrease_speed_bezier(delta,direction,counter)
+		velocity = decrease_speed_bezier(_delta,direction,counter)
 	counter +=1
 	
 	
@@ -82,9 +83,10 @@ func apply_damage():
 	# interaction with boss
 	# contact with the wall at certain speed
 	# contact with spider attack
-	pass
+	HEALTH -=1
+	print(HEALTH)
 
-func decrease_speed_bezier(delta,direction,counter):
+func decrease_speed_bezier(_delta,direction,counter):
 	#this is in progress
 	var new_speed=KNOCKBACK_SPEED/counter
 	var remaining = timer.get_time_left()

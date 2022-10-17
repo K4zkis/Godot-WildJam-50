@@ -17,7 +17,7 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	mouse_position = get_global_mouse_position()
 	x_to_reach = (3*player.position.x + mouse_position.x)/4
 	y_to_reach = (3* player.position.y + mouse_position.y)/4

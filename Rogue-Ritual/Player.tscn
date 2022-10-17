@@ -23,7 +23,7 @@ animations = [ {
 "speed": 6.5
 } ]
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
 HOLDING_ITEM = true
 
