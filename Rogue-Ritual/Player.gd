@@ -7,14 +7,14 @@ export (int) var FRICTION = 50
 export (int) var HOLD_SPEED = 40
 export (bool) var HOLDING_ITEM = false
 export (bool) var STUN_ACTIVE = false
-
+export (float) var STUN_TIME = 0.7
 var velocity = Vector2()
 var counter = 0
 
 onready var timer = get_parent().get_node("Timer")
 
 func _ready():
-	timer.set_one_shot(1)
+	timer.set_one_shot(STUN_TIME)
 	
 	
 	
@@ -67,11 +67,9 @@ func apply_knockback(direction):
 		timer.start()
 		print ("Timer is started")
 	if counter*FRICTION < KNOCKBACK_SPEED:
-		velocity = (KNOCKBACK_SPEED-FRICTION*counter)*direction
+		velocity = KNOCKBACK_SPEED*direction.cubic_interpolate(Vector2(0,0),Vector2(0,0),Vector2(0,0), 0.8)
 	else:
 		pass
-	
-	print ("counter is ", counter)
 	counter +=1
 	
 	

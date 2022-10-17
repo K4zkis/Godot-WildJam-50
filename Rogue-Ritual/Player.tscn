@@ -9,7 +9,7 @@
 [ext_resource path="res://Raven_Shadow.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 9 )
+extents = Vector2( 8, 4 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -29,6 +29,7 @@ script = ExtResource( 2 )
 HOLDING_ITEM = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 7 )
 shape = SubResource( 1 )
 
 [node name="Raven_Sprite" type="AnimatedSprite" parent="."]
@@ -40,9 +41,6 @@ playing = true
 z_index = -1
 texture = ExtResource( 5 )
 script = ExtResource( 7 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 6 )
