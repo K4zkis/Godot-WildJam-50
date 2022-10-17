@@ -6,6 +6,7 @@ export (int) var ACCELERATION = 20
 export (int) var FRICTION = 20
 export (int) var HOLD_SPEED = 40
 export (bool) var HOLDING_ITEM = false
+export (bool) var STUN_ACTIVE = false
 
 var velocity = Vector2()
 
@@ -23,27 +24,41 @@ func get_input():
 		velocity.y -= 1
 
 func _physics_process(_delta):
-	get_input()
+	
+	if STUN_ACTIVE == false:
+		get_input()
+		if HOLDING_ITEM:
+			velocity = velocity.normalized() * HOLD_SPEED
+		else:
+			velocity = velocity.normalized() * MAX_SPEED
+	else:
+		var knockback_direction = Vector2()
+		knockback_direction = (self.global_transform.origin - get_parent().get_node("Boss").global_transform.origin).normalized()
+		apply_knockback(knockback_direction)
+		
+	
 	if velocity == Vector2(0,0):
 		$Raven_Sprite.animation = "Idle"
 	else:
 		$Raven_Sprite.animation = "Walking"
-	if HOLDING_ITEM:
-		velocity = velocity.normalized() * HOLD_SPEED
-	else:
-		velocity = velocity.normalized() * MAX_SPEED
+	
 	velocity = move_and_slide(velocity)
+	
+	
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if collision.collider.name.begins_with("Boss"):
 			print ("collided with", collision.collider.name)
-			apply_knockback()
+			STUN_ACTIVE = true
 	
 
 
-func apply_knockback():
-	var knockback_direction = (self.global_transform.origin - get_parent().get_node("Boss").global_transform.origin).normalized()
-	velocity = move_and_slide(knockback_direction*KNOCKBACK_SPEED*-1)
+func apply_knockback(direction):
+	#this doesn't wirk yet
+	#velocity = move_toward(KNOCKBACK_SPEED,0,FRICTION)*direction*-1
+		#if velocity.x*velocity.y == 0:
+			#STUN_ACTIVE=false
+	pass
 func apply_frozen_ground():
 	#friction
 	pass
