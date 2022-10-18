@@ -1,6 +1,6 @@
-# Godot-WildJam-50
+# Godot-WildJam-50: Rogue Castle
 This is the Repository for a Godot Wild Jam #50 Submission Game development
-Current Game Name: Rogue Castle
+
 ###### Reference: https://itch.io/jam/godot-wild-jam-50
 
 ## Given Themes
