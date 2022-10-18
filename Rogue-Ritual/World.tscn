@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss.tscn" type="PackedScene" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Player_Camera_mouse.gd" type="Script" id=5]
 [ext_resource path="res://big_light.png" type="Texture" id=6]
 [ext_resource path="res://Light2D.gd" type="Script" id=7]
-[ext_resource path="res://bookshelf.png" type="Texture" id=8]
+[ext_resource path="res://Objects/Bookshelf.tscn" type="PackedScene" id=8]
 [ext_resource path="res://LightCone.gd" type="Script" id=9]
+[ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="OccluderPolygon2D" id=29]
 polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -387,9 +388,6 @@ navpoly = SubResource( 26 )
 position = Vector2( 132, 65 )
 path_to_player = NodePath("../../Player")
 
-[node name="AnimatedSprite" parent="Navigation2D_ for Spider1/Spider" index="0"]
-frame = 1
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation2D_ for Spider1/Spider"]
 target_desired_distance = 15.0
 path_max_distance = 20.0
@@ -400,18 +398,16 @@ radius = 40.0
 wait_time = 0.5
 autostart = true
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 107, 57 )
-texture = ExtResource( 8 )
+[node name="HealthUI" parent="." instance=ExtResource( 10 )]
 
-[node name="HealthUI" type="Control" parent="."]
-margin_right = 92.0
-margin_bottom = 14.0
+[node name="Bookshelf" parent="." instance=ExtResource( 8 )]
+position = Vector2( 73, 28 )
 
-[node name="Label" type="Label" parent="HealthUI"]
-margin_right = 42.0
-margin_bottom = 14.0
-text = "HP = 5"
+[node name="Bookshelf2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 91, 28 )
+
+[node name="Bookshelf3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 109, 28 )
 
 [connection signal="timeout" from="Timer" to="Player" method="Timer_timeout"]
 
