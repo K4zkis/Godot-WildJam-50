@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://MainManu.gd" type="Script" id=2]
+[ext_resource path="res://World.tscn" type="PackedScene" id=3]
+[ext_resource path="res://OptionsMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Credits.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 29
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.490196 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.686275 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.392157 )
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 2 )
+mainGameScene = ExtResource( 3 )
+OptionsScene = ExtResource( 4 )
+CreditsScene = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 280.0
+margin_bottom = 210.0
+color = Color( 0.231373, 0.133333, 0.501961, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 280.0
+margin_bottom = 210.0
+custom_constants/margin_right = 30
+custom_constants/margin_top = 20
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 203.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 220.0
+margin_bottom = 89.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 1 )
+text = "Rogue Ritual"
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 93.0
+margin_right = 220.0
+margin_bottom = 183.0
+size_flags_vertical = 3
+custom_constants/separation = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 220.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 65
+custom_constants/margin_left = 65
+
+[node name="Start_Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+margin_left = 65.0
+margin_right = 155.0
+margin_bottom = 24.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "Start"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 32.0
+margin_right = 220.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 65
+custom_constants/margin_left = 65
+
+[node name="Options_Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2"]
+margin_left = 65.0
+margin_right = 155.0
+margin_bottom = 25.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "Options"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 220.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 65
+custom_constants/margin_left = 65
+
+[node name="Credits_Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
+margin_left = 65.0
+margin_right = 155.0
+margin_bottom = 25.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "Credits"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Start_Button" to="." method="_on_Start_Button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/Options_Button" to="." method="_on_Options_Button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/Credits_Button" to="." method="_on_Credits_Button_button_up"]
