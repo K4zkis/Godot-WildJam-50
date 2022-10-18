@@ -10,3 +10,8 @@ Ritual
 - Superstitious
 - Stay in the Light/Dark
 
+##General Features
+- Enemy pathfinding
+- Player controller
+- Health system
+- object interaction
