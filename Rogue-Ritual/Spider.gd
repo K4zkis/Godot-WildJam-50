@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var velocity := Vector2.ZERO
-export (float) var MAX_SPEED_SPIDER = 25
+export (int) var MAX_SPEED_SPIDER = 25
 export var path_to_player := NodePath()
 # Declare member variables here. Examples:
 # var a = 2

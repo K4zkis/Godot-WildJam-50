@@ -387,6 +387,9 @@ navpoly = SubResource( 26 )
 position = Vector2( 132, 65 )
 path_to_player = NodePath("../../Player")
 
+[node name="AnimatedSprite" parent="Navigation2D_ for Spider1/Spider" index="0"]
+frame = 1
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation2D_ for Spider1/Spider"]
 target_desired_distance = 15.0
 path_max_distance = 20.0
@@ -400,6 +403,15 @@ autostart = true
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 107, 57 )
 texture = ExtResource( 8 )
+
+[node name="HealthUI" type="Control" parent="."]
+margin_right = 92.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="HealthUI"]
+margin_right = 42.0
+margin_bottom = 14.0
+text = "HP = 5"
 
 [connection signal="timeout" from="Timer" to="Player" method="Timer_timeout"]
 
