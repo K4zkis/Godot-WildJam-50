@@ -334,6 +334,7 @@ outlines = [ PoolVector2Array( 41, 52, 278, 54, 279, 89, 218, 89, 218, 150, 41, 
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 61, 59 )
+z_index = 1
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Player_Camera_mouse")
