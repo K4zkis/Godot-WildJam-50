@@ -1,4 +1,4 @@
-# Godot-WildJam-50: Rogue Castle
+# Godot-WildJam-50: Rogue Ritual
 This is the Repository for a Godot Wild Jam #50 Submission Game development
 
 ###### Reference: https://itch.io/jam/godot-wild-jam-50
