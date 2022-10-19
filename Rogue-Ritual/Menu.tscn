@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainManu.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Credits.tscn" type="PackedScene" id=5]
 [ext_resource path="res://menu.png" type="Texture" id=6]
 [ext_resource path="res://big_light.png" type="Texture" id=7]
+[ext_resource path="res://Light2D.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 29
@@ -55,7 +56,7 @@ margin_bottom = 82.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.86
-custom_colors/font_color = Color( 0.337255, 0.501961, 0.396078, 1 )
+custom_colors/font_color = Color( 0.411765, 0.0313726, 0.0313726, 1 )
 custom_colors/font_outline_modulate = Color( 0.384314, 0.0941176, 0.0941176, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -139,6 +140,7 @@ text = "Credits"
 position = Vector2( 235.5, 48.25 )
 scale = Vector2( 1.33214, 1.53095 )
 texture = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Start_Button" to="." method="_on_Start_Button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/Options_Button" to="." method="_on_Options_Button_button_up"]
