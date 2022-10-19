@@ -3,7 +3,7 @@ extends Node2D
 
 #const VIEW_AREA = 200
 var mouse_position
-onready var player = get_parent().get_node("Player")
+onready var player = get_parent().get_node("YSort/Player")
 
 var x_to_reach
 var y_to_reach

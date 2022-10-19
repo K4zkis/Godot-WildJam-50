@@ -12,7 +12,9 @@ var velocity = Vector2()
 var counter = 0
 var HEALTH = 5
 
-onready var timer = get_parent().get_node("Timer")
+onready var timer = get_parent().get_parent().get_node("Timer")
+onready var stats = $Stats
+
 
 func _ready():
 	timer.set_one_shot(STUN_TIME)
@@ -86,9 +88,9 @@ func apply_damage():
 	HEALTH -=1
 	print(HEALTH)
 
-func decrease_speed_bezier(_delta,direction,counter):
+func decrease_speed_bezier(_delta,direction,count):
 	#this is in progress
-	var new_speed=KNOCKBACK_SPEED/counter
+	var new_speed=KNOCKBACK_SPEED/count
 	var remaining = timer.get_time_left()
 	#the max time we have is STUN_TIME
 	if remaining < STUN_TIME and remaining > 0.5*STUN_TIME:
@@ -107,4 +109,3 @@ func Timer_timeout():
 	STUN_ACTIVE=false
 	counter = 0
 	print (" Stun is deactivated and counter reset")
-	

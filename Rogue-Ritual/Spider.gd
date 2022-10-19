@@ -10,19 +10,26 @@ export var path_to_player := NodePath()
 onready var player := get_node(path_to_player)
 onready var _agent : NavigationAgent2D = $NavigationAgent2D
 onready var _timer: Timer = $Timer
-
+onready var stats = $Stats
 # Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	_update_pathfinding()
 	_timer.connect("timeout", self, "_update_pathfinding")
 	_agent.connect("velocity_computed", self, "move")
+	print("Hello")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
+#	if Input.is_action_just_pressed("fall_in trap"):
+#		queue_free()
+
+	
 	if _agent.is_navigation_finished():
 		return 
 	var direction := global_position.direction_to(_agent.get_next_location())
@@ -46,4 +53,6 @@ func _update_pathfinding()-> void:
 	
 func move(velocity: Vector2)-> void:
 	velocity = move_and_slide(velocity)
+	
+#potential stats
 	
