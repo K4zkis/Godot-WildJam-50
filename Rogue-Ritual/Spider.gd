@@ -18,7 +18,7 @@ func _ready():
 	_update_pathfinding()
 	_timer.connect("timeout", self, "_update_pathfinding")
 	_agent.connect("velocity_computed", self, "move")
-	print("Hello")
+	print(stats.max_health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

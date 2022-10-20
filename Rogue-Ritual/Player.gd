@@ -10,7 +10,6 @@ export (bool) var STUN_ACTIVE = false
 export (float) var STUN_TIME = 0.7
 var velocity = Vector2()
 var counter = 0
-var HEALTH = 5
 
 onready var timer = get_parent().get_parent().get_node("Timer")
 onready var stats = $Stats
@@ -85,9 +84,7 @@ func apply_damage():
 	# interaction with boss
 	# contact with the wall at certain speed
 	# contact with spider attack
-	HEALTH -=1
-	print(HEALTH)
-
+	pass
 func decrease_speed_bezier(_delta,direction,count):
 	#this is in progress
 	var new_speed=KNOCKBACK_SPEED/count
@@ -109,3 +106,13 @@ func Timer_timeout():
 	STUN_ACTIVE=false
 	counter = 0
 	print (" Stun is deactivated and counter reset")
+
+
+func _on_Hurtbox_area_entered(area):
+	stats.health -= area.damage
+	# disable hurbox
+
+
+func _on_Stats_no_health():
+	print("Player Died")
+	pass # Replace with function body.
