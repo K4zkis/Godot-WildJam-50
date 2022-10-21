@@ -14,6 +14,10 @@ config/name="Rogue-Ritual"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerStats="*res://Attack_logic/PlayerStats.tscn"
+
 [display]
 
 window/size/width=280

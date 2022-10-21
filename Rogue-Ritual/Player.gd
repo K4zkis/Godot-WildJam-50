@@ -8,14 +8,16 @@ export (int) var HOLD_SPEED = 40
 export (bool) var HOLDING_ITEM = false
 export (bool) var STUN_ACTIVE = false
 export (float) var STUN_TIME = 0.7
+export (float) var INVINCIBILITY_DURATION = 1.1
 var velocity = Vector2()
 var counter = 0
 
 onready var timer = get_parent().get_parent().get_node("Timer")
-onready var stats = $Stats
-
+onready var stats = PlayerStats
+onready var hurtbox = $Hurtbox
 
 func _ready():
+	stats.connect("no_health", self, "queue_free")
 	timer.set_one_shot(STUN_TIME)
 	
 	
@@ -110,7 +112,8 @@ func Timer_timeout():
 
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
-	# disable hurbox
+	hurtbox.start_invincibility(INVINCIBILITY_DURATION)
+	print (stats.health)
 
 
 func _on_Stats_no_health():
