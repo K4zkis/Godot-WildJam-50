@@ -3,9 +3,7 @@ extends KinematicBody2D
 var velocity := Vector2.ZERO
 export (int) var MAX_SPEED_SPIDER = 25
 export var path_to_player := NodePath()
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var health = 100
 
 onready var player := get_node(path_to_player)
 onready var _agent : NavigationAgent2D = $NavigationAgent2D
@@ -28,6 +26,7 @@ func _ready():
 #	pass
 
 func _process(delta: float) -> void:
+	pass
 #	if Input.is_action_just_pressed("fall_in trap"):
 #		queue_free()
 
@@ -64,3 +63,7 @@ func getKnocked(velocity: Vector2)-> void:
 
 func hit(var knockback):
 	self.getKnocked(knockback)
+	health= health -1
+	if(health <=0):
+		queue_free()
+		
