@@ -28,11 +28,13 @@ func _physics_process(_delta):
 		knockback_direction = (self.global_transform.origin - get_parent().get_node("Boss").global_transform.origin).normalized()
 		apply_knockback(knockback_direction,_delta)
 	
-	for index in get_slide_count():
-		var collision = get_slide_collision(index)
-		if collision.collider.name.begins_with("Boss"):
-			print ("collided with ", collision.collider.name)
-			STUN_ACTIVE = true
+	match state: 
+		Player_state:
+			for index in get_slide_count():
+				var collision = get_slide_collision(index)
+				if collision.collider.name.begins_with("Boss"):
+					print ("collided with ", collision.collider.name)
+					STUN_ACTIVE = true
 
 
 func apply_knockback(direction,_delta):
@@ -83,3 +85,4 @@ func _on_First_found_object_object_pressed():
 	used_Sprite = get_node("Controlled_Garlic")
 	used_Sprite.set_visible(true)
 	get_parent().get_parent().get_node("Center_Object").queue_free()
+	state = Garlic_1
