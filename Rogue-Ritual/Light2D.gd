@@ -12,5 +12,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(_delta):
-#	self.position = get_parent().get_node("Player").position
+
+func _process(_delta):
+	self.position =  get_parent().get_node("YSort/Player").position 
