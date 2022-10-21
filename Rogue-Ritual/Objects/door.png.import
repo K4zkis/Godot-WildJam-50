@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/garlic.png-0e25d41bf777f8e3e0af02ed567ad3c3.stex"
+path="res://.import/door.png-d0c1d2c7e9e06765d11190ef399c16e7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://garlic.png"
-dest_files=[ "res://.import/garlic.png-0e25d41bf777f8e3e0af02ed567ad3c3.stex" ]
+source_file="res://Objects/door.png"
+dest_files=[ "res://.import/door.png-d0c1d2c7e9e06765d11190ef399c16e7.stex" ]
 
 [params]
 

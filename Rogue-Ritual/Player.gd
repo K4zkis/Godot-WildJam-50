@@ -12,6 +12,20 @@ export (float) var INVINCIBILITY_DURATION = 1.1
 var velocity = Vector2()
 var counter = 0
 
+enum {
+	Garlic_1,
+	Garlic_2,
+	Garlic_3,
+	Garlic_4,
+	Garlic_5,
+	Player_state
+}
+
+
+var state = Player_state
+
+
+
 onready var timer = get_parent().get_parent().get_node("Timer")
 onready var stats = PlayerStats
 onready var hurtbox = $Hurtbox
@@ -36,6 +50,22 @@ func get_input():
 		velocity.y -= 1
 
 func _physics_process(_delta):
+	
+	match state:
+		Garlic_1:
+			pass
+		Garlic_2:
+			pass
+		Garlic_3:
+			pass
+		Garlic_4:
+			pass
+		Garlic_5:
+			pass
+		Player_state:
+			pass
+	
+	
 	
 	if STUN_ACTIVE == false:
 		get_input()
@@ -87,6 +117,8 @@ func apply_damage():
 	# contact with the wall at certain speed
 	# contact with spider attack
 	pass
+	
+	
 func decrease_speed_bezier(_delta,direction,count):
 	#this is in progress
 	var new_speed=KNOCKBACK_SPEED/count
