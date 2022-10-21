@@ -368,9 +368,6 @@ collision_layer = 1
 collision_mask = 1
 path_to_player = NodePath("../../Player")
 
-[node name="AnimatedSprite" parent="YSort/Navigation2D_ for Spider1/Spider" index="0"]
-frame = 1
-
 [node name="CollisionShape2D" parent="YSort/Navigation2D_ for Spider1/Spider" index="1"]
 rotation = 1.5708
 shape = SubResource( 59 )
@@ -478,12 +475,24 @@ position = Vector2( 91, 28 )
 [node name="Bookshelf1" parent="Booshelf_objects" instance=ExtResource( 8 )]
 position = Vector2( 73, 28 )
 
-[node name="Center_Object" parent="." instance=ExtResource( 13 )]
+[node name="Object_to collect 1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 52, -68 )
+
+[node name="Object_to collect 2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1199, -880 )
+
+[node name="Object_to collect 3" parent="." instance=ExtResource( 13 )]
+position = Vector2( -145, 451 )
+
+[node name="Object_to collect 4" parent="." instance=ExtResource( 13 )]
+position = Vector2( -1083, 1160 )
+
+[node name="Object_to collect 5" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1299, 449 )
 
 [connection signal="no_health" from="YSort/Player/Stats" to="YSort/Player" method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="YSort/Player" method="Timer_timeout"]
-[connection signal="object_pressed" from="Center_Object/First_found_object" to="YSort/Player" method="_on_First_found_object_object_pressed"]
+[connection signal="object_pressed" from="Object_to collect 1/First_found_object" to="YSort/Player" method="_on_First_found_object_object_pressed"]
 
 [editable path="YSort/Navigation2D_ for Spider1/Spider"]
 [editable path="YSort/Navigation2D_ for Spider1/Spider/Hitbox"]
@@ -492,4 +501,4 @@ position = Vector2( 52, -68 )
 [editable path="YSort/Player/Hurtbox"]
 [editable path="YSort/Boss"]
 [editable path="CanvasLayer/HealthUI"]
-[editable path="Center_Object"]
+[editable path="Object_to collect 1"]

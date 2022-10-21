@@ -84,5 +84,11 @@ func _on_First_found_object_object_pressed():
 	used_Sprite.set_visible(false)
 	used_Sprite = get_node("Controlled_Garlic")
 	used_Sprite.set_visible(true)
-	get_parent().get_parent().get_node("Center_Object").queue_free()
+	get_parent().get_parent().get_node("Object_to collect 1").queue_free()
 	state = Garlic_1
+	
+
+
+
+func _place_on_pentagramm():
+	pass

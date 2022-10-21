@@ -46,20 +46,6 @@ func get_input():
 		velocity.y -= 1
 
 func _physics_process(_delta):
-	
-	match state:
-		Garlic_1:
-			pass
-		Garlic_2:
-			pass
-		Garlic_3:
-			pass
-		Garlic_4:
-			pass
-		Garlic_5:
-			pass
-		Player_state:
-			pass
 		
 	if velocity == Vector2(0,0):
 		used_Sprite.animation = "Idle"
