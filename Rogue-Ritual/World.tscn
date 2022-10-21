@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Pentagram.gd" type="Script" id=12]
 [ext_resource path="res://Objects/Center_Object.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Objects/door_open.png" type="Texture" id=14]
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Pentagram_node.gd" type="Script" id=16]
 
 [sub_resource type="NavigationPolygon" id=26]
 vertices = PoolVector2Array( 259, 190, -29, 185, -1, 42, 281, 44, 279, 89, 316, 118 )
@@ -351,13 +353,27 @@ points = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
 } ]
 0/z_index = 0
 
+[sub_resource type="DynamicFont" id=65]
+font_data = ExtResource( 15 )
+
 [sub_resource type="CapsuleShape2D" id=63]
 radius = 8.0
 height = 10.0
 
 [sub_resource type="CapsuleShape2D" id=64]
-radius = 8.0
-height = 7.99998
+radius = 9.0
+height = 9.99998
+
+[sub_resource type="CapsuleShape2D" id=66]
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id=67]
+radius = 11.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id=68]
+radius = 11.0
+height = 10.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -375,6 +391,9 @@ position = Vector2( 132, 65 )
 collision_layer = 1
 collision_mask = 1
 path_to_player = NodePath("../../Player")
+
+[node name="AnimatedSprite" parent="YSort/Navigation2D_ for Spider1/Spider" index="0"]
+frame = 1
 
 [node name="CollisionShape2D" parent="YSort/Navigation2D_ for Spider1/Spider" index="1"]
 rotation = 1.5708
@@ -456,6 +475,9 @@ script = ExtResource( 9 )
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 10 )]
 
+[node name="Label" parent="CanvasLayer/HealthUI" index="0"]
+custom_fonts/font = SubResource( 65 )
+
 [node name="DoorOpen" type="Sprite" parent="."]
 position = Vector2( 1216, -756 )
 texture = ExtResource( 14 )
@@ -487,6 +509,7 @@ position = Vector2( -1083, 1160 )
 position = Vector2( 1299, 449 )
 
 [node name="Pentagram_node" type="Area2D" parent="."]
+script = ExtResource( 16 )
 
 [node name="Pentagram" type="Sprite" parent="Pentagram_node"]
 position = Vector2( 70, 119 )
@@ -509,6 +532,21 @@ shape = SubResource( 63 )
 position = Vector2( 118, 100 )
 rotation = 1.5708
 shape = SubResource( 64 )
+
+[node name="Collision_shape_UP" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 78, 80 )
+rotation = 1.5708
+shape = SubResource( 66 )
+
+[node name="Collision_shape_DL" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 45, 169 )
+rotation = 1.5708
+shape = SubResource( 67 )
+
+[node name="Collision_shape_DR" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 98, 165 )
+rotation = 1.5708
+shape = SubResource( 68 )
 
 [connection signal="no_health" from="YSort/Player/Stats" to="YSort/Player" method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="YSort/Player" method="Timer_timeout"]
