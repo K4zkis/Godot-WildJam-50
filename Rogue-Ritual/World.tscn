@@ -651,7 +651,6 @@ position = Vector2( 98, 165 )
 rotation = 1.5708
 shape = SubResource( 68 )
 
-[connection signal="area_entered" from="YSort/Navigation2D_ for Spider1/Spider/Hitbox" to="YSort/Navigation2D_ for Spider1/Spider" method="_on_Hitbox_area_entered"]
 [connection signal="no_health" from="YSort/Player/Stats" to="YSort/Player" method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="YSort/Player" method="Timer_timeout"]
 [connection signal="object_pressed" from="Object_to collect 1/First_found_object" to="YSort/Player" method="_on_First_found_object_object_pressed"]

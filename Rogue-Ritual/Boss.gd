@@ -44,3 +44,11 @@ func _update_pathfinding()-> void:
 	
 func move(velocity: Vector2)-> void:
 	velocity = move_and_slide(velocity)
+	
+func getKnocked(velocity: Vector2)-> void:
+	velocity = move_and_slide(velocity)
+
+
+
+func hit(var knockback):
+	self.getKnocked(knockback)
