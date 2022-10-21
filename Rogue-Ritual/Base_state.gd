@@ -14,6 +14,7 @@ onready var hurtbox = $Hurtbox
 
 var velocity = Vector2()
 var state = Player_state
+onready var used_Sprite = get_node("Raven_Sprite")
 
 enum {
 	Garlic_1,
@@ -35,10 +36,10 @@ func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
-		get_node("Raven_Sprite").set_flip_h(false)
+		used_Sprite.set_flip_h(false)
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
-		get_node("Raven_Sprite").set_flip_h(true)
+		used_Sprite.set_flip_h(true)
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
@@ -61,9 +62,9 @@ func _physics_process(_delta):
 			pass
 		
 	if velocity == Vector2(0,0):
-		$Raven_Sprite.animation = "Idle"
+		used_Sprite.animation = "Idle"
 	else:
-		$Raven_Sprite.animation = "Walking"
+		used_Sprite.animation = "Walking"
 	
 	velocity = move_and_slide(velocity)
 		

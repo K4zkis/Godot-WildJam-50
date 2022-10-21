@@ -7,6 +7,8 @@ export (int) var KNOCKBACK_SPEED =400
 onready var timer = get_parent().get_parent().get_node("Timer")
 
 var counter = 0
+var Garlic_icon = preload("res://Switch_to_objects/Controlled_Garlic.tscn")
+
 
 func _ready():
 	timer.set_one_shot(STUN_TIME)
@@ -74,8 +76,10 @@ func _on_Hurtbox_area_entered(area):
 
 func _on_Stats_no_health():
 	get_tree().change_scene("res://Menu.tscn")
-	print("Player Died")
 
 
 func _on_First_found_object_object_pressed():
-	print("Object_pressed signal has been received")
+	used_Sprite.set_visible(false)
+	used_Sprite = get_node("Controlled_Garlic")
+	used_Sprite.set_visible(true)
+	get_parent().get_parent().get_node("Center_Object").queue_free()

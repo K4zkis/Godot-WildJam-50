@@ -9,7 +9,7 @@
 [ext_resource path="res://Raven_Shadow.gd" type="Script" id=7]
 [ext_resource path="res://Attack_logic/Hitbox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Attack_logic/Hurtbox.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Switch_to_objects/garlic.png" type="Texture" id=10]
+[ext_resource path="res://Switch_to_objects/Controlled_Garlic.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 4 )
@@ -77,8 +77,7 @@ collision_layer = 4
 position = Vector2( 0, 2 )
 shape = SubResource( 4 )
 
-[node name="Garlic_Object" type="Sprite" parent="."]
-texture = ExtResource( 10 )
+[node name="Controlled_Garlic" parent="." instance=ExtResource( 10 )]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss.tscn" type="PackedScene" id=2]
@@ -26,6 +26,16 @@ height = 6.0
 
 [sub_resource type="CapsuleShape2D" id=60]
 height = 3.0
+
+[sub_resource type="NavigationPolygon" id=61]
+vertices = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 ) ]
+
+[sub_resource type="NavigationPolygon" id=62]
+vertices = PoolVector2Array( 30.4882, 30.9915, 0, 30.9915, 0, 0, 30.4882, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 30.4882, 30.9915, 0, 30.9915, 0, 0, 30.4882, 0 ) ]
 
 [sub_resource type="OccluderPolygon2D" id=29]
 polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -184,7 +194,7 @@ points = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
 0/autotile/tile_size = Vector2( 64, 64 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [ Vector2( 0, 4 ), SubResource( 29 ), Vector2( 0, 5 ), SubResource( 30 ), Vector2( 0, 6 ), SubResource( 31 ), Vector2( 0, 7 ), SubResource( 32 ), Vector2( 1, 5 ), SubResource( 36 ), Vector2( 1, 6 ), SubResource( 37 ), Vector2( 1, 7 ), SubResource( 38 ), Vector2( 2, 5 ), SubResource( 42 ), Vector2( 2, 6 ), SubResource( 43 ), Vector2( 2, 7 ), SubResource( 44 ), Vector2( 3, 5 ), SubResource( 45 ), Vector2( 3, 6 ), SubResource( 46 ), Vector2( 4, 5 ), SubResource( 47 ), Vector2( 4, 6 ), SubResource( 48 ), Vector2( 5, 0 ), SubResource( 49 ), Vector2( 5, 7 ), SubResource( 50 ), Vector2( 6, 0 ), SubResource( 51 ), Vector2( 6, 7 ), SubResource( 52 ), Vector2( 7, 0 ), SubResource( 53 ), Vector2( 7, 3 ), SubResource( 54 ), Vector2( 7, 4 ), SubResource( 55 ), Vector2( 7, 5 ), SubResource( 56 ), Vector2( 7, 6 ), SubResource( 57 ), Vector2( 7, 7 ), SubResource( 58 ) ]
-0/autotile/navpoly_map = [  ]
+0/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 61 ), Vector2( 1, 0 ), SubResource( 62 ) ]
 0/autotile/priority_map = [  ]
 0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
@@ -389,7 +399,7 @@ collision_layer = 1
 [node name="Hitbox" parent="YSort/Player" index="3"]
 collision_mask = 8
 
-[node name="Garlic_Object" parent="YSort/Player" index="5"]
+[node name="Controlled_Garlic" parent="YSort/Player" index="5"]
 visible = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]

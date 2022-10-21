@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Switch_to_objects/garlic.png" type="Texture" id=1]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Walking",
+"speed": 5.0
+} ]
+
+[node name="Controlled_Garlic" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "Walking"
+playing = true
