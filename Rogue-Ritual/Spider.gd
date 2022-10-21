@@ -15,6 +15,8 @@ onready var stats = $Stats
 
 
 func _ready():
+	if(player==null):
+		return
 	_update_pathfinding()
 	_timer.connect("timeout", self, "_update_pathfinding")
 	_agent.connect("velocity_computed", self, "move")
@@ -55,4 +57,10 @@ func move(velocity: Vector2)-> void:
 	velocity = move_and_slide(velocity)
 	
 #potential stats
-	
+func getKnocked(velocity: Vector2)-> void:
+	velocity = move_and_slide(velocity)
+
+
+
+func hit(var knockback):
+	self.getKnocked(knockback)

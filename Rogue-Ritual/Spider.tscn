@@ -45,4 +45,12 @@ collision_mask = 4
 position = Vector2( 0, -5 )
 shape = SubResource( 3 )
 
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 0, -5 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+
 [editable path="Hitbox"]

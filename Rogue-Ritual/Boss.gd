@@ -18,12 +18,19 @@ onready var _agent : NavigationAgent2D = $NavigationAgent2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_update_pathfinding()
+	get_node("CollisionShape2D").position.x += 10
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
+	if(player.position.x < self.position.x):
+		get_node("Sprite").flip_h = false
+		get_node("Sprite").offset.x = 10
+	else:
+		get_node("Sprite").flip_h = true
+		get_node("Sprite").offset.x = -10
+		
 	var direction := global_position.direction_to(_agent.get_next_location())
 	var desired_velocity = direction * MAX_SPEED
 	var steering = (desired_velocity - velocity)*delta*4.0
