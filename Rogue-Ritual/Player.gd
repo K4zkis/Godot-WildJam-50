@@ -7,6 +7,8 @@ export (int) var KNOCKBACK_SPEED =400
 onready var timer = get_parent().get_parent().get_node("Timer")
 
 var counter = 0
+var Garlic_icon = preload("res://Switch_to_objects/Controlled_Garlic.tscn")
+
 
 func _ready():
 	timer.set_one_shot(STUN_TIME)
@@ -26,11 +28,13 @@ func _physics_process(_delta):
 		knockback_direction = (self.global_transform.origin - get_parent().get_node("Navigation_Boss").get_node("Boss").global_transform.origin).normalized()
 		apply_knockback(knockback_direction,_delta)
 	
-	for index in get_slide_count():
-		var collision = get_slide_collision(index)
-		if collision.collider.name.begins_with("Boss"):
-			print ("collided with ", collision.collider.name)
-			STUN_ACTIVE = true
+	match state: 
+		Player_state:
+			for index in get_slide_count():
+				var collision = get_slide_collision(index)
+				if collision.collider.name.begins_with("Boss"):
+					print ("collided with ", collision.collider.name)
+					STUN_ACTIVE = true
 
 
 func apply_knockback(direction,_delta):
@@ -74,8 +78,17 @@ func _on_Hurtbox_area_entered(area):
 
 func _on_Stats_no_health():
 	get_tree().change_scene("res://Menu.tscn")
-	print("Player Died")
 
 
 func _on_First_found_object_object_pressed():
-	print("Object_pressed signal has been received")
+	used_Sprite.set_visible(false)
+	used_Sprite = get_node("Controlled_Garlic")
+	used_Sprite.set_visible(true)
+	get_parent().get_parent().get_node("Object_to collect 1").queue_free()
+	state = Garlic_1
+	
+
+
+
+func _place_on_pentagramm():
+	pass

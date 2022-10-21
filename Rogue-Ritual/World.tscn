@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Pentagram.gd" type="Script" id=12]
 [ext_resource path="res://Objects/Center_Object.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Objects/door_open.png" type="Texture" id=14]
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Pentagram_node.gd" type="Script" id=16]
 
 [sub_resource type="NavigationPolygon" id=26]
 vertices = PoolVector2Array( 337, 198, 144, 263, -29, 185, -88, 149, -62, 113, 215, 18, 283, 45, 346, 127, 344, 45, -20, -4, 121, -84, 206, -63 )
@@ -26,6 +28,9 @@ height = 6.0
 
 [sub_resource type="CapsuleShape2D" id=60]
 height = 3.0
+
+[sub_resource type="DynamicFont" id=65]
+font_data = ExtResource( 15 )
 
 [sub_resource type="NavigationPolygon" id=81]
 vertices = PoolVector2Array( 128, 160, 160, 160, 160, 192, 128, 192 )
@@ -426,6 +431,25 @@ points = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
 } ]
 0/z_index = 0
 
+[sub_resource type="CapsuleShape2D" id=63]
+radius = 8.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id=64]
+radius = 9.0
+height = 9.99998
+
+[sub_resource type="CapsuleShape2D" id=66]
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id=67]
+radius = 11.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id=68]
+radius = 11.0
+height = 10.0
+
 [node name="Node2D" type="Node2D"]
 
 [node name="YSort" type="YSort" parent="."]
@@ -474,7 +498,7 @@ collision_layer = 1
 [node name="Hitbox" parent="YSort/Player" index="3"]
 collision_mask = 8
 
-[node name="Garlic_Object" parent="YSort/Player" index="5"]
+[node name="Controlled_Garlic" parent="YSort/Player" index="5"]
 visible = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
@@ -546,6 +570,9 @@ energy = 0.6
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 10 )]
 
+[node name="Label" parent="CanvasLayer/HealthUI" index="0"]
+custom_fonts/font = SubResource( 65 )
+
 [node name="DoorOpen" type="Sprite" parent="."]
 position = Vector2( 1216, -756 )
 texture = ExtResource( 14 )
@@ -569,13 +596,65 @@ position = Vector2( 91, 28 )
 [node name="Bookshelf1" parent="Booshelf_objects" instance=ExtResource( 8 )]
 position = Vector2( 73, 28 )
 
-[node name="Center_Object" parent="." instance=ExtResource( 13 )]
+[node name="Object_to collect 1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 52, -68 )
+
+[node name="Object_to collect 2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1199, -880 )
+
+[node name="Object_to collect 3" parent="." instance=ExtResource( 13 )]
+position = Vector2( -145, 451 )
+
+[node name="Object_to collect 4" parent="." instance=ExtResource( 13 )]
+position = Vector2( -1083, 1160 )
+
+[node name="Object_to collect 5" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1299, 449 )
+
+[node name="Pentagram_node" type="Area2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="Pentagram" type="Sprite" parent="Pentagram_node"]
+position = Vector2( 70, 119 )
+z_index = -1
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+
+[node name="Light2D" type="Light2D" parent="Pentagram_node/Pentagram"]
+texture = ExtResource( 6 )
+texture_scale = 0.8
+color = Color( 0.815686, 0.682353, 0.156863, 1 )
+energy = 0.6
+
+[node name="Collision_shape_UL" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 19, 99 )
+rotation = 1.5708
+shape = SubResource( 63 )
+
+[node name="Collision_shape_UR" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 118, 100 )
+rotation = 1.5708
+shape = SubResource( 64 )
+
+[node name="Collision_shape_UP" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 78, 80 )
+rotation = 1.5708
+shape = SubResource( 66 )
+
+[node name="Collision_shape_DL" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 45, 169 )
+rotation = 1.5708
+shape = SubResource( 67 )
+
+[node name="Collision_shape_DR" type="CollisionShape2D" parent="Pentagram_node"]
+position = Vector2( 98, 165 )
+rotation = 1.5708
+shape = SubResource( 68 )
 
 [connection signal="area_entered" from="YSort/Navigation2D_ for Spider1/Spider/Hitbox" to="YSort/Navigation2D_ for Spider1/Spider" method="_on_Hitbox_area_entered"]
 [connection signal="no_health" from="YSort/Player/Stats" to="YSort/Player" method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="YSort/Player" method="Timer_timeout"]
-[connection signal="object_pressed" from="Center_Object/First_found_object" to="YSort/Player" method="_on_First_found_object_object_pressed"]
+[connection signal="object_pressed" from="Object_to collect 1/First_found_object" to="YSort/Player" method="_on_First_found_object_object_pressed"]
 
 [editable path="YSort/Navigation2D_ for Spider1/Spider"]
 [editable path="YSort/Navigation2D_ for Spider1/Spider/Hitbox"]
@@ -583,4 +662,4 @@ position = Vector2( 52, -68 )
 [editable path="YSort/Player/Hitbox"]
 [editable path="YSort/Player/Hurtbox"]
 [editable path="CanvasLayer/HealthUI"]
-[editable path="Center_Object"]
+[editable path="Object_to collect 1"]
