@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Doorlogic/Button.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.490196 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.686275 )
+
+[node name="Doorbutton" type="Node2D"]
+scale = Vector2( 0.4, 0.4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="Area2D"]
+margin_right = 51.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+text = "Door?"
+
+[connection signal="pressed" from="Area2D/Button" to="Area2D" method="_on_Button_pressed"]
