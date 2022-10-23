@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var door_closed = get_parent().get_parent().get_node("Closed")
+onready var door_closed = get_parent().get_parent().get_node("DoorNode/Closed")
 
 var latch = true
 var open_icon = preload("res://Objects/door_open.png")
