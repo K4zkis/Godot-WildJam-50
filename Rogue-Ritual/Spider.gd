@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var velocity := Vector2.ZERO
+
 export (int) var MAX_SPEED_SPIDER = 25
 export var path_to_player := NodePath()
 export var health = 100
@@ -10,15 +10,21 @@ onready var _agent : NavigationAgent2D = $NavigationAgent2D
 onready var _timer: Timer = $Timer
 onready var stats = $Stats
 # Called when the node enters the scene tree for the first time.
-
-
+var velocity := Vector2.ZERO
+var state = IDLE
+var spider_position = global_transform.origin
+var original_position = spider_position
+var attack_radius = 400
+enum {
+	ATTACK
+	IDLE
+}
 func _ready():
 	if(player==null):
 		return
 	_update_pathfinding()
 	_timer.connect("timeout", self, "_update_pathfinding")
 	_agent.connect("velocity_computed", self, "move")
-	print(stats.max_health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,29 +32,42 @@ func _ready():
 #	pass
 
 func _process(delta: float) -> void:
-	pass
 #	if Input.is_action_just_pressed("fall_in trap"):
 #		queue_free()
-
 	
-	if _agent.is_navigation_finished():
-		return 
-	var direction := global_position.direction_to(_agent.get_next_location())
-	var desired_velocity = direction * MAX_SPEED_SPIDER
-	var steering = (desired_velocity - velocity)*delta*4.0
-	velocity += steering
-	_agent.set_velocity(velocity)
+	var distance = spider_position.distance_to(player.global_position)
 	
-	#if player:
-		#var direction = (player.position - position).normalized()
-		#direction = move_and_slide(direction * SPIDER_SPEED)
+	if distance <= attack_radius:
+		state = ATTACK
+	elif distance > attack_radius:
+		state = IDLE
 	
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		var object = collision.collider
-		if object.is_in_group("player"):
-			object.apply_damage()
+	match state:
+		ATTACK:
+			if _agent.is_navigation_finished():
+				return 
+			var direction := global_position.direction_to(_agent.get_next_location())
+			var desired_velocity = direction * MAX_SPEED_SPIDER
+			var steering = (desired_velocity - velocity)*delta*4.0
+			velocity += steering
+			_agent.set_velocity(velocity)
 			
+			#if player:
+				#var direction = (player.position - position).normalized()
+				#direction = move_and_slide(direction * SPIDER_SPEED)
+			
+			for i in get_slide_count():
+				var collision = get_slide_collision(i)
+				var object = collision.collider
+				if object.is_in_group("player"):
+					object.apply_damage()
+		IDLE:
+			if spider_position != original_position:
+				global_transform.origin = original_position
+			else:
+				pass
+				
+
 func _update_pathfinding()-> void:
 	_agent.set_target_location(player.global_position)
 	

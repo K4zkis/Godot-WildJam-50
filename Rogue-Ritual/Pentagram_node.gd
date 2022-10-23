@@ -1,11 +1,11 @@
 extends Area2D
 
 
-signal UL
-signal UP
-signal UR
-signal DL
-signal DR
+#signal UL
+#signal UP
+#signal UR
+#signal DL
+#signal DR
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
