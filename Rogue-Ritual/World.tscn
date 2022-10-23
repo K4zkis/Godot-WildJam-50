@@ -485,30 +485,6 @@ height = 10.0
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Navigation2D_ for Spider1" type="Navigation2D" parent="YSort"]
-edge_connection_margin = 5.0
-
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="YSort/Navigation2D_ for Spider1"]
-position = Vector2( 1, 2 )
-navpoly = SubResource( 26 )
-
-[node name="Spider" parent="YSort/Navigation2D_ for Spider1" instance=ExtResource( 4 )]
-position = Vector2( 132, 65 )
-collision_layer = 1
-collision_mask = 1
-path_to_player = NodePath("../../Player")
-
-[node name="AnimatedSprite" parent="YSort/Navigation2D_ for Spider1/Spider" index="0"]
-frame = 0
-
-[node name="CollisionShape2D" parent="YSort/Navigation2D_ for Spider1/Spider" index="1"]
-rotation = 1.5708
-shape = SubResource( 59 )
-
-[node name="CollisionShape2D" parent="YSort/Navigation2D_ for Spider1/Spider/Hitbox" index="0"]
-position = Vector2( -1, -6.5 )
-shape = SubResource( 60 )
-
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 61, 59 )
 z_index = 1
@@ -532,6 +508,30 @@ path_to_player = NodePath("../../Player")
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="YSort/Navigation_Boss"]
 position = Vector2( 1, 2 )
 navpoly = SubResource( 26 )
+
+[node name="Navigation2D_ for Spider1" type="Navigation2D" parent="YSort"]
+edge_connection_margin = 5.0
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="YSort/Navigation2D_ for Spider1"]
+position = Vector2( 1, 2 )
+navpoly = SubResource( 26 )
+
+[node name="Spider" parent="YSort/Navigation2D_ for Spider1" instance=ExtResource( 4 )]
+position = Vector2( 132, 65 )
+collision_layer = 1
+collision_mask = 1
+path_to_player = NodePath("../../Player")
+
+[node name="AnimatedSprite" parent="YSort/Navigation2D_ for Spider1/Spider" index="0"]
+frame = 0
+
+[node name="CollisionShape2D" parent="YSort/Navigation2D_ for Spider1/Spider" index="1"]
+rotation = 1.5708
+shape = SubResource( 59 )
+
+[node name="CollisionShape2D" parent="YSort/Navigation2D_ for Spider1/Spider/Hitbox" index="0"]
+position = Vector2( -1, -6.5 )
+shape = SubResource( 60 )
 
 [node name="Navigation2D_for_Big_Room" type="Navigation2D" parent="YSort"]
 
@@ -820,13 +820,21 @@ margin_bottom = 45.0
 [connection signal="no_health" from="YSort/Player/Stats" to="YSort/Player" method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="YSort/Player" method="Timer_timeout"]
 [connection signal="object_pressed" from="Object_to collect 1/First_found_object" to="YSort/Player" method="_on_First_found_object_object_pressed"]
+[connection signal="object_pressed" from="Object_to collect 2/First_found_object" to="YSort/Player" method="_on_found_object_2_object_pressed"]
+[connection signal="object_pressed" from="Object_to collect 3/First_found_object" to="YSort/Player" method="_on_found_object_3_object_pressed"]
+[connection signal="object_pressed" from="Object_to collect 4/First_found_object" to="YSort/Player" method="_on_found_object_4_object_pressed"]
+[connection signal="object_pressed" from="Object_to collect 5/First_found_object" to="YSort/Player" method="_on_found_object_5_object_pressed"]
 
-[editable path="YSort/Navigation2D_ for Spider1/Spider"]
-[editable path="YSort/Navigation2D_ for Spider1/Spider/Hitbox"]
 [editable path="YSort/Player"]
 [editable path="YSort/Player/Hitbox"]
 [editable path="YSort/Player/Hurtbox"]
+[editable path="YSort/Navigation2D_ for Spider1/Spider"]
+[editable path="YSort/Navigation2D_ for Spider1/Spider/Hitbox"]
 [editable path="CanvasLayer/HealthUI"]
 [editable path="Object_to collect 1"]
+[editable path="Object_to collect 2"]
+[editable path="Object_to collect 3"]
+[editable path="Object_to collect 4"]
+[editable path="Object_to collect 5"]
 [editable path="DoorButtonCombiDL/DoorNode"]
 [editable path="DoorButtonCombiDL/DoorButtonDL"]
