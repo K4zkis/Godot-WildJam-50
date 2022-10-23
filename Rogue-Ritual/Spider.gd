@@ -12,7 +12,7 @@ onready var stats = $Stats
 # Called when the node enters the scene tree for the first time.
 var velocity := Vector2.ZERO
 var state = IDLE
-var spider_position = self.position
+var spider_position = self.global_position
 var original_position = spider_position
 var attack_radius = 400
 
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 #	if Input.is_action_just_pressed("fall_in trap"):
 #		queue_free()
 	
-	var distance = spider_position.distance_to(player.position)
+	var distance = self.global_position.distance_to(player.global_position)
 	
 	if distance <= attack_radius:
 		state = ATTACK
