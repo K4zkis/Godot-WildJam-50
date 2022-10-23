@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(Input.is_action_pressed("leftmouse") and randi() %10 >6 ):
 		var one = flame.instance()
 		var stage = get_tree().current_scene

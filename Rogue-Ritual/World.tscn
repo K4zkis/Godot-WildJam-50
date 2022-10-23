@@ -489,6 +489,7 @@ height = 10.0
 position = Vector2( 61, 59 )
 z_index = 1
 collision_layer = 1
+MAX_SPEED = 200
 
 [node name="Hitbox" parent="YSort/Player" index="3"]
 collision_mask = 8
@@ -765,6 +766,65 @@ position = Vector2( -1171, -277 )
 [node name="Object_to collect 5" parent="." instance=ExtResource( 13 )]
 position = Vector2( 1299, 449 )
 
+[node name="DoorButtonCombiDL" type="Node2D" parent="."]
+
+[node name="DoorNode" parent="DoorButtonCombiDL" instance=ExtResource( 18 )]
+position = Vector2( -1152, -116 )
+
+[node name="DoorButtonDL" parent="DoorButtonCombiDL" instance=ExtResource( 17 )]
+position = Vector2( -909, 893 )
+
+[node name="Button" parent="DoorButtonCombiDL/DoorButtonDL/Area2D" index="0"]
+margin_left = -0.00012207
+margin_top = -0.000244141
+margin_right = 84.9999
+margin_bottom = 44.9998
+
+[node name="DoorButtonCombiDD" type="Node2D" parent="."]
+position = Vector2( 686, 61 )
+
+[node name="DoorNode" parent="DoorButtonCombiDD" instance=ExtResource( 18 )]
+position = Vector2( -878, 719 )
+
+[node name="DoorButtonDL" parent="DoorButtonCombiDD" instance=ExtResource( 17 )]
+position = Vector2( 137, 255 )
+
+[node name="Button" parent="DoorButtonCombiDD/DoorButtonDL/Area2D" index="0"]
+margin_left = -0.00012207
+margin_top = -0.000244141
+margin_right = 84.9999
+margin_bottom = 44.9998
+
+[node name="DoorButtonCombiDR" type="Node2D" parent="."]
+position = Vector2( 1804, 91 )
+
+[node name="DoorNode" parent="DoorButtonCombiDR" instance=ExtResource( 18 )]
+position = Vector2( -524, 561 )
+
+[node name="DoorButtonDL" parent="DoorButtonCombiDR" instance=ExtResource( 17 )]
+position = Vector2( -473, 99 )
+
+[node name="Button" parent="DoorButtonCombiDR/DoorButtonDL/Area2D" index="0"]
+margin_left = -0.00012207
+margin_top = -0.000244141
+margin_right = 84.9999
+margin_bottom = 44.9998
+
+[node name="DoorButtonCombiUP" type="Node2D" parent="."]
+position = Vector2( 1534, -883 )
+
+[node name="DoorNode" parent="DoorButtonCombiUP" instance=ExtResource( 18 )]
+position = Vector2( -318, 127 )
+
+[node name="DoorButtonDL" parent="DoorButtonCombiUP" instance=ExtResource( 17 )]
+position = Vector2( -523, -78 )
+
+[node name="Button" parent="DoorButtonCombiUP/DoorButtonDL/Area2D" index="0"]
+margin_left = -0.00012207
+margin_top = -0.000244141
+margin_right = 84.9999
+margin_bottom = 44.9998
+
 [node name="Pentagram_node" type="Area2D" parent="."]
 script = ExtResource( 16 )
 
@@ -805,20 +865,6 @@ position = Vector2( 98, 165 )
 rotation = 1.5708
 shape = SubResource( 68 )
 
-[node name="DoorButtonCombiDL" type="Node2D" parent="."]
-
-[node name="DoorNode" parent="DoorButtonCombiDL" instance=ExtResource( 18 )]
-position = Vector2( -1152, -116 )
-
-[node name="DoorButtonDL" parent="DoorButtonCombiDL" instance=ExtResource( 17 )]
-position = Vector2( -914, 892 )
-
-[node name="Button" parent="DoorButtonCombiDL/DoorButtonDL/Area2D" index="0"]
-margin_left = -797.5
-margin_top = -2412.5
-margin_right = -712.5
-margin_bottom = -2367.5
-
 [connection signal="no_health" from="YSort/Player/Stats" to="YSort/Player" method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="YSort/Player" method="Timer_timeout"]
 [connection signal="object_pressed" from="Object_to collect 1/First_found_object" to="YSort/Player" method="_on_First_found_object_object_pressed"]
@@ -840,3 +886,9 @@ margin_bottom = -2367.5
 [editable path="Object_to collect 5"]
 [editable path="DoorButtonCombiDL/DoorNode"]
 [editable path="DoorButtonCombiDL/DoorButtonDL"]
+[editable path="DoorButtonCombiDD/DoorNode"]
+[editable path="DoorButtonCombiDD/DoorButtonDL"]
+[editable path="DoorButtonCombiDR/DoorNode"]
+[editable path="DoorButtonCombiDR/DoorButtonDL"]
+[editable path="DoorButtonCombiUP/DoorNode"]
+[editable path="DoorButtonCombiUP/DoorButtonDL"]
