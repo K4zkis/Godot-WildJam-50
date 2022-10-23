@@ -43,8 +43,8 @@ custom_fonts/font = SubResource( 1 )
 text = " 
  Creators:
 
- Nhu Kevin Tieu
- Janus Milojevic"
+ Vinhtieu
+ Janus"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 145.0

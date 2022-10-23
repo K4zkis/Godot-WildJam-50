@@ -1,3 +1,67 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://menu.png" type="Texture" id=2]
+[ext_resource path="res://OptionsMenu.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.490196 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.686275 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 140, 105 )
+texture = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 280.0
+margin_bottom = 210.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 52.0
+margin_top = 78.0
+margin_right = 227.0
+margin_bottom = 132.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 175.0
+margin_bottom = 54.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "WASD for Movement
+
+Left Mouse to Interact"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+margin_top = 194.0
+margin_right = 45.0
+margin_bottom = 210.0
+size_flags_horizontal = 2
+size_flags_vertical = 12
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer2"]
+margin_right = 45.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = " Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/Button" to="." method="_on_Button_pressed"]
