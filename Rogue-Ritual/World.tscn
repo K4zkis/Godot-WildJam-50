@@ -491,12 +491,10 @@ position = Vector2( 163, 137 )
 path_to_player = NodePath("../../Player")
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="YSort/Navigation_Boss"]
-visible = false
 position = Vector2( 1, 2 )
 navpoly = SubResource( 100 )
 
 [node name="Navigation2D_ for Spider1" type="Navigation2D" parent="YSort"]
-visible = false
 edge_connection_margin = 5.0
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="YSort/Navigation2D_ for Spider1"]
@@ -635,7 +633,6 @@ position = Vector2( -189, -446 )
 position = Vector2( 574, -812 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="Timer" type="Timer" parent="."]
