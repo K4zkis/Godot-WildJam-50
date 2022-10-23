@@ -7,8 +7,10 @@ onready var label = $Label
 
 func set_hearts(value):
 	hearts = clamp(value,0,max_hearts)
-	if label != null:
-		label.text = "HP = " + str(hearts)
+	var sprites = get_children()
+	for i in sprites:
+		if(i.get_index() +1 > hearts):
+			i.hide()
 	
 func set_max_hearts(value):
 	max_hearts = max(value,1)

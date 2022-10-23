@@ -9,9 +9,8 @@
 [ext_resource path="res://Raven_Shadow.gd" type="Script" id=7]
 [ext_resource path="res://Attack_logic/Hitbox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Attack_logic/Hurtbox.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Switch_to_objects/garlic.png" type="Texture" id=10]
-[ext_resource path="res://Fire.gd" type="Script" id=11]
 [ext_resource path="res://Switch_to_objects/Controlled_Garlic.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Fire.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 4 )

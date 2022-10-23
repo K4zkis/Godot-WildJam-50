@@ -17,9 +17,11 @@ func set_invincible(value):
 func start_invincibility(duration):
 	self.invincible = true
 	timer.start(duration)
+	get_parent().get_node("Raven_Sprite").modulate = Color(1,0,0)
 
 func _on_Timer_timeout():
 	self.invincible = false # Replace with function body.
+	get_parent().get_node("Raven_Sprite").modulate = Color(1,1,1)
 
 
 func _on_Hurtbox_invincibility_started():
