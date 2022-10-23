@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://pentagram.png" type="Texture" id=11]
 [ext_resource path="res://Pentagram.gd" type="Script" id=12]
 [ext_resource path="res://Objects/Center_Object.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Switch_to_objects/garlic.png" type="Texture" id=14]
 [ext_resource path="res://Pentagram_node.gd" type="Script" id=16]
 [ext_resource path="res://Doorlogic/Doorbutton.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Doorlogic/Door.tscn" type="PackedScene" id=18]
@@ -458,25 +459,6 @@ points = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
 } ]
 0/z_index = 0
 
-[sub_resource type="CapsuleShape2D" id=63]
-radius = 8.0
-height = 10.0
-
-[sub_resource type="CapsuleShape2D" id=64]
-radius = 9.0
-height = 9.99998
-
-[sub_resource type="CapsuleShape2D" id=66]
-height = 8.0
-
-[sub_resource type="CapsuleShape2D" id=67]
-radius = 11.0
-height = 12.0
-
-[sub_resource type="CapsuleShape2D" id=68]
-radius = 11.0
-height = 10.0
-
 [node name="Node2D" type="Node2D"]
 
 [node name="YSort" type="YSort" parent="."]
@@ -518,6 +500,9 @@ position = Vector2( 132, 65 )
 collision_layer = 1
 collision_mask = 1
 path_to_player = NodePath("../../Player")
+
+[node name="AnimatedSprite" parent="YSort/Navigation2D_ for Spider1/Spider" index="0"]
+frame = 0
 
 [node name="CollisionShape2D" parent="YSort/Navigation2D_ for Spider1/Spider" index="1"]
 rotation = 1.5708
@@ -706,18 +691,6 @@ position = Vector2( 109, 28 )
 [node name="Garlic" type="Sprite" parent="."]
 position = Vector2( 19, 94 )
 
-[node name="Pentagram" type="Sprite" parent="."]
-position = Vector2( 70, 119 )
-z_index = -1
-texture = ExtResource( 11 )
-script = ExtResource( 12 )
-
-[node name="Light2D" type="Light2D" parent="Pentagram"]
-texture = ExtResource( 6 )
-texture_scale = 0.8
-color = Color( 0.815686, 0.682353, 0.156863, 1 )
-energy = 0.6
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 10 )]
@@ -833,30 +806,32 @@ texture_scale = 0.8
 color = Color( 0.815686, 0.682353, 0.156863, 1 )
 energy = 0.6
 
-[node name="Collision_shape_UL" type="CollisionShape2D" parent="Pentagram_node"]
-position = Vector2( 19, 99 )
-rotation = 1.5708
-shape = SubResource( 63 )
+[node name="Garlics" type="Node2D" parent="Pentagram_node/Pentagram"]
 
-[node name="Collision_shape_UR" type="CollisionShape2D" parent="Pentagram_node"]
-position = Vector2( 118, 100 )
-rotation = 1.5708
-shape = SubResource( 64 )
+[node name="Sprite" type="Sprite" parent="Pentagram_node/Pentagram/Garlics"]
+position = Vector2( -51, -26 )
+texture = ExtResource( 14 )
 
-[node name="Collision_shape_UP" type="CollisionShape2D" parent="Pentagram_node"]
-position = Vector2( 78, 80 )
-rotation = 1.5708
-shape = SubResource( 66 )
+[node name="Sprite2" type="Sprite" parent="Pentagram_node/Pentagram/Garlics"]
+position = Vector2( 8, -44 )
+texture = ExtResource( 14 )
 
-[node name="Collision_shape_DL" type="CollisionShape2D" parent="Pentagram_node"]
-position = Vector2( 45, 169 )
-rotation = 1.5708
-shape = SubResource( 67 )
+[node name="Sprite3" type="Sprite" parent="Pentagram_node/Pentagram/Garlics"]
+position = Vector2( 47, -25 )
+texture = ExtResource( 14 )
 
-[node name="Collision_shape_DR" type="CollisionShape2D" parent="Pentagram_node"]
-position = Vector2( 98, 165 )
-rotation = 1.5708
-shape = SubResource( 68 )
+[node name="Sprite4" type="Sprite" parent="Pentagram_node/Pentagram/Garlics"]
+position = Vector2( 26, 44 )
+texture = ExtResource( 14 )
+
+[node name="Sprite5" type="Sprite" parent="Pentagram_node/Pentagram/Garlics"]
+position = Vector2( -24, 45 )
+texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pentagram_node"]
+position = Vector2( 37, 81 )
+scale = Vector2( 0.491875, 0.371323 )
+polygon = PoolVector2Array( 80, 69, 131, 100, 134, 151, 76, 183, 11, 137, 29, 93 )
 
 [connection signal="no_health" from="YSort/Player/Stats" to="YSort/Player" method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="YSort/Player" method="Timer_timeout"]
@@ -865,6 +840,8 @@ shape = SubResource( 68 )
 [connection signal="object_pressed" from="Object_to collect 3/First_found_object" to="YSort/Player" method="_on_found_object_3_object_pressed"]
 [connection signal="object_pressed" from="Object_to collect 4/First_found_object" to="YSort/Player" method="_on_found_object_4_object_pressed"]
 [connection signal="object_pressed" from="Object_to collect 5/First_found_object" to="YSort/Player" method="_on_found_object_5_object_pressed"]
+[connection signal="area_entered" from="Pentagram_node" to="YSort/Player" method="_on_Pentagram_node_area_entered"]
+[connection signal="area_entered" from="Pentagram_node" to="YSort/Player/Hurtbox" method="_on_Pentagram_node_area_entered"]
 
 [editable path="YSort/Player"]
 [editable path="YSort/Player/Hitbox"]

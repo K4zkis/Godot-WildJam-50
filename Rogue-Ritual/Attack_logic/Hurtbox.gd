@@ -7,6 +7,7 @@ signal invincibility_ended
 
 onready var timer = $Timer
 
+
 func set_invincible(value):
 	invincible = value
 	if invincible == true:
@@ -30,3 +31,14 @@ func _on_Hurtbox_invincibility_started():
 
 func _on_Hurtbox_invincibility_ended():
 	monitorable = true
+
+
+func _on_Pentagram_node_area_entered(area):
+	if(get_parent().state == 0):
+		get_parent().state = 5
+		get_parent().used_Sprite.set_visible(false)
+		get_parent().used_Sprite = get_parent().get_node("Raven_Sprite")
+		get_parent().used_Sprite.set_visible(true)
+		get_node("/root/PlayerStats").increment_garlics()
+		
+		

@@ -1,7 +1,6 @@
 extends Sprite
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	energy = 0
@@ -21,3 +20,9 @@ func _process(delta):
 	else:	
 		energy = energy - delta/2
 	get_node("Light2D").energy = energy	
+	for i in get_node("Garlics").get_children():
+		if(i.get_index() +1 > get_node("/root/PlayerStats").garlics):
+			i.hide()
+		else:
+			i.show()
+
