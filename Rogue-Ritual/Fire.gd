@@ -32,3 +32,5 @@ func _process(delta):
 	if(mana>= 360):
 		lockedAttack=false
 		get_parent().modulate = Color(1,1,1)
+	if(get_parent().used_Sprite != get_parent().get_node("Raven_Sprite")):
+		lockedAttack =true	
