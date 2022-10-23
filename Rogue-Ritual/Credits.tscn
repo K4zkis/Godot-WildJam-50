@@ -1,9 +1,69 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menu.png" type="Texture" id=1]
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Credits.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.490196 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.686275 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 140, 106 )
 texture = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_top = -25.0
+anchor_bottom = 25.0
+margin_right = 280.0
+margin_bottom = 211.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 280.0
+margin_bottom = 211.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 280.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 1 )
+text = " 
+ Creators:
+
+ Nhu Kevin Tieu
+ Janus Milojevic"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 145.0
+margin_right = 45.0
+margin_bottom = 161.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 45.0
+margin_bottom = 16.0
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+margin_right = 45.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = " Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/BackButton" to="." method="_on_BackButton_pressed"]
