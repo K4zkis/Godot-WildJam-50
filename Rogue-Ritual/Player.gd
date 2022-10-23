@@ -27,6 +27,7 @@ func _physics_process(_delta):
 		var knockback_direction = Vector2()
 		knockback_direction = (self.global_transform.origin - get_parent().get_node("Navigation_Boss").get_node("Boss").global_transform.origin).normalized()
 		apply_knockback(knockback_direction,_delta)
+
 	
 	match state: 
 		Player_state:
@@ -35,6 +36,8 @@ func _physics_process(_delta):
 				if collision.collider.name.begins_with("Boss"):
 					print ("collided with ", collision.collider.name)
 					STUN_ACTIVE = true
+					hurtbox.start_invincibility(INVINCIBILITY_DURATION)
+					get_node("/root/PlayerStats").health = get_node("/root/PlayerStats").health - 1
 
 
 func apply_knockback(direction,_delta):

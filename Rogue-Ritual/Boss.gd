@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export (int) var MAX_SPEED = 25
+export (int) var MAX_SPEED = 40
 export var path_to_player := NodePath()
 var velocity := Vector2.ZERO
 # Declare member variables here. Examples:
